@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>LabelQMLComponent.js</file>
+        <file>ObjectNameFlag.qml</file>
+        <file>ObjectNameDisplayBoard.qml</file>
     </qresource>
 </RCC>
