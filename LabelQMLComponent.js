@@ -20,6 +20,8 @@ function addObjectNameFlag(item) {
 
         if (item.children[i].objectName !== "objectNameDisplayBoard") {
             addObjectNameFlag(item.children[i])
+            if (item.children[i].objectName !== "" &&
+                item.children[i].objectName !== undefined)
             flagComp.createObject(item.children[i], {
                                       objectName: "DYN_NAME_FLAG",
                                       displayBoard: displayBoard,
