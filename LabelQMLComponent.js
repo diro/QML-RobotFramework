@@ -15,10 +15,12 @@ function removeObjectNameFlag(item) {
     }
 }
 
+var root;
 function addObjectNameFlag(item, prefix) {
 
     if (prefix === undefined) {
         prefix = ""
+        root = item
     }
 
     for (var i = 0; i < item.children.length; i++) {
@@ -37,7 +39,9 @@ function addObjectNameFlag(item, prefix) {
                                           displayBoard: displayBoard,
                                           labelName: item.children[i].objectName,
                                           labelPath: prefix,
-                                          item: item.children[i]
+                                          item: item.children[i],
+                                          itemIndex:i,
+                                          root:root
                                       })
             }
         }

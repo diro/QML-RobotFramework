@@ -7,7 +7,7 @@ Window {
     property bool showName: false
     MainForm {
         anchors.fill: parent
-        Component.onCompleted: {LabelQML.createDisplayBoard(this)}
+        Component.onCompleted: {LabelQML.createDisplayBoard(this)   }
         mouseArea.onClicked: {
             if (!showName) {
                 LabelQML.addObjectNameFlag(this);
@@ -17,7 +17,6 @@ Window {
                 showName = false;
             }
         }
-
-
     }
+
 }
