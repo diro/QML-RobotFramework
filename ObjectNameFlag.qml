@@ -48,36 +48,40 @@ Item {
                     displayBoard.labelName = base.labelName
                     displayBoard.labelPath = base.labelPath
 
-                    base.generateItemMetadata()
 
-                    displayBoard.funcModel = funcList
-                    displayBoard.propModel = propList
-                    //displayBoard.x = mapToItem(null, this.x, this.y).x
-                    //displayBoard.y = mapToItem(null, this.x, this.y).y
-                    //displayBoard.visible=true;
 
                 }
                 onExited: {
                     itemBorder.border.color = "transparent"
+                    displayBoard.delayHide();
                 }
                 onClicked: {
-                    //displayBoard.copyToClipBoard()
-                    if (rectLabelFlag.color == "#ff0000")
+                    base.generateItemMetadata()
+                    displayBoard.copyToClipBoard();
+                    displayBoard.funcModel = funcList
+                    displayBoard.propModel = propList
+                    displayBoard.x = mapToItem(null, this.x, this.y).x + 10
+                    displayBoard.y = mapToItem(null, this.x, this.y).y
+
+                    if (displayBoard.x + displayBoard.width > displayBoard.parent.width)
                     {
-                        rectLabelFlag.color = "#00dd00"
-                    }
-                    else
-                    {
-                        rectLabelFlag.color = "#ff0000"
+                        displayBoard.x -= (displayBoard.width + 10);
                     }
 
-                    displayBoard.visible=!displayBoard.visible
+                    if (displayBoard.y + displayBoard.height > displayBoard.parent.height)
+                    {
+                        displayBoard.y -= (displayBoard.height - 10);
+                    }
+
+                    displayBoard.show()
                 }
             }
         }
     }
 
     function generateItemMetadata() {
+        funcList.clear();
+        propList.clear();
         for (var i in base.item) {
             if (typeof (base.item[i]) === "function") {
                 if (i.toString().indexOf("Changed") === -1)

@@ -7,6 +7,7 @@ Rectangle {
     width: 640
     height: 640
 
+
     Rectangle {
         x: 100
         y: 100
@@ -39,4 +40,35 @@ Rectangle {
             z: 10
         }
     }
+
+    Rectangle {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: 30
+        width:100
+        objectName: "compContainer2"
+        color: "#3433aa"
+        Text {
+            objectName: "inside2"
+            anchors.centerIn: parent
+            text: "I AM COMP3"
+            z: 10
+        }
+    }
+
+    Rectangle {
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        height: 30
+        width:100
+        objectName: "compContainer3"
+        color: "#aa33aa"
+        Text {
+            objectName: "inside3"
+            anchors.centerIn: parent
+            text: "I AM COMP4"
+            z: 10
+        }
+    }
+
 }
