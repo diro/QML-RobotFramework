@@ -1,12 +1,18 @@
 import QtQuick 2.0
+import QtQuick.Controls 1.3
 
 Text {
+    id: base
+    property string labelPath: ""
+    property string labelName: ""
     anchors.centerIn: parent
     objectName: "objectNameDisplayBoard"
-    font.pixelSize: 32
+    font.pixelSize: 24
+    font.family: "Verdana"
     color: "white"
     height: 10
-    text: ""
+    text: labelPath + labelName
+
     Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         height: parent.paintedHeight
@@ -16,5 +22,15 @@ Text {
         border.color: "orange"
         opacity: 0.4
         z: -1
+    }
+
+    TextInput {
+        id: objtext
+        text: base.labelName
+        visible: false
+    }
+    function copyToClipBoard() {
+        objtext.selectAll()
+        objtext.copy()
     }
 }

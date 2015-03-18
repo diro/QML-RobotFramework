@@ -1,8 +1,8 @@
-var flagComp = Qt.createComponent("ObjectNameFlag.qml")
+var flagComp = Qt.createComponent("../ObjectNameFlag.qml")
 var displayBoard;
 
 function createDisplayBoard(item) {
-    displayBoard = Qt.createComponent("ObjectNameDisplayBoard.qml").createObject(item)
+    displayBoard = Qt.createComponent("../ObjectNameDisplayBoard.qml").createObject(item)
 }
 
 function removeObjectNameFlag(item) {
@@ -14,19 +14,45 @@ function removeObjectNameFlag(item) {
     }
 }
 
-function addObjectNameFlag(item) {
+function addObjectNameFlag(item, prefix) {
+
+    if (prefix === undefined)
+    {
+        prefix = ""
+    }
 
     for (var i = 0; i < item.children.length; i++) {
 
         if (item.children[i].objectName !== "objectNameDisplayBoard") {
-            addObjectNameFlag(item.children[i])
-            if (item.children[i].objectName !== "" &&
-                item.children[i].objectName !== undefined)
-            flagComp.createObject(item.children[i], {
+            if (item.children[i].objectName != "")
+            {
+                addObjectNameFlag(item.children[i], prefix + item.children[i].objectName + "->")
+            }
+            else
+            {
+                addObjectNameFlag(item.children[i], prefix + "[]->")
+
+            }
+
+            if (item.children[i].color != undefined)
+            {
+               // item.children[i].color="yellow"
+                item.children[i].opacity = 0.8
+            }
+                        
+
+            if (item.children[i].objectName !== "")
+            {
+                flagComp.createObject(item.children[i], {
                                       objectName: "DYN_NAME_FLAG",
                                       displayBoard: displayBoard,
-                                      label: item.children[i].objectName
+                                      labelName:item.children[i].objectName,
+                                      labelPath:prefix,
+                                      item:item.children[i]
                                   })
+            }
+            
         }
+        
     }
 }
