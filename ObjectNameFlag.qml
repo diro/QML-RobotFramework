@@ -3,14 +3,12 @@ import QtQuick 2.0
 Item {
     id: base
     property var item
-    property int itemIndex
     property var displayBoard
-    property var root
+    property int flagSize: 10
     property string labelName: ""
     property string labelPath: ""
-    //property variant propList: [""]
-    //property variant funcList: [""]
     anchors.fill: parent
+
     ListModel {
         id: propList
     }
@@ -30,8 +28,8 @@ Item {
             id: rectLabelFlag
             anchors.top: parent.top
             anchors.left: parent.left
-            width: 10
-            height: 10
+            width: base.flagSize
+            height: base.flagSize
             color: "#ff0000"
             radius: 2
 
@@ -40,52 +38,47 @@ Item {
                 hoverEnabled: true
 
                 onEntered: {
-
-                    //console.log("coord:" + this.x + "," + this.y);
-                    //displayBoard.x = this.x + this.width;
-                    //displayBoard.y = this.y;
                     itemBorder.border.color = "red"
-                    displayBoard.labelName = base.labelName
-                    displayBoard.labelPath = base.labelPath
-
-
-
                 }
                 onExited: {
                     itemBorder.border.color = "transparent"
-                    displayBoard.delayHide();
+                    displayBoard.delayHide()
                 }
                 onClicked: {
-                    base.generateItemMetadata()
-                    displayBoard.copyToClipBoard();
+                    adjustPanelPosition(displayBoard, base.flagSize, base.flagSize)
+                    generateItemMetadataModel()
+                    displayBoard.labelName = base.labelName
+                    displayBoard.labelPath = base.labelPath
                     displayBoard.funcModel = funcList
                     displayBoard.propModel = propList
-                    displayBoard.x = mapToItem(null, this.x, this.y).x + 10
-                    displayBoard.y = mapToItem(null, this.x, this.y).y
-
-                    if (displayBoard.x + displayBoard.width > displayBoard.parent.width)
-                    {
-                        displayBoard.x -= (displayBoard.width + 10);
-                    }
-
-                    if (displayBoard.y + displayBoard.height > displayBoard.parent.height)
-                    {
-                        displayBoard.y -= (displayBoard.height - 10);
-                    }
 
                     displayBoard.show()
+                    displayBoard.copyToClipBoard()
                 }
             }
         }
     }
 
-    function generateItemMetadata() {
-        funcList.clear();
-        propList.clear();
+    function adjustPanelPosition(panel, blockWidth, blockHeight) {
+        panel.x = mapToItem(null, this.x, this.y).x + blockWidth
+        panel.y = mapToItem(null, this.x, this.y).y
+
+        if (panel.x + panel.width > panel.parent.width) {
+            panel.x -= (panel.width + blockWidth)
+        }
+
+        if (panel.y + panel.height > panel.parent.height) {
+            panel.y -= (panel.height - blockHeight)
+        }
+    }
+
+    function generateItemMetadataModel() {
+        funcList.clear()
+        propList.clear()
+
         for (var i in base.item) {
             if (typeof (base.item[i]) === "function") {
-                if (i.toString().indexOf("Changed") === -1)
-                {
+                if (i.toString().indexOf("Changed") === -1) {
                     var func = {
                         name: i.toString()
                     }
@@ -98,6 +91,5 @@ Item {
                 propList.append(prop)
             }
         }
-        console.log("prop count:" + propList.count)
     }
 }

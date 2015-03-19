@@ -5,5 +5,8 @@
         <file>LabelQMLComponent.js</file>
         <file>ObjectNameFlag.qml</file>
         <file>ObjectNameDisplayBoard.qml</file>
+        <file>ObjectNameLabel.qml</file>
+        <file>ActionPicker.qml</file>
+        <file>MemberPicker.qml</file>
     </qresource>
 </RCC>

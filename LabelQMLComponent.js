@@ -39,9 +39,7 @@ function addObjectNameFlag(item, prefix) {
                                           displayBoard: displayBoard,
                                           labelName: item.children[i].objectName,
                                           labelPath: prefix,
-                                          item: item.children[i],
-                                          itemIndex:i,
-                                          root:root
+                                          item: item.children[i]
                                       })
             }
         }
