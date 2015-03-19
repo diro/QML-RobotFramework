@@ -31,10 +31,40 @@ Rectangle {
         anchors.left: member.right
         anchors.leftMargin: 5
         width: base.width - action.width - member.width - 12
-        height: member.height - 6
+        height: member.height - 6 - 40
         text: ""
         font.pixelSize: 10
-        focus: true
+    }
+
+    SimpleButton {
+        id: btnEdit
+        anchors.top: keywordEditor.bottom
+        anchors.left: member.right
+        text: "Edit"
+        onClicked: {
+            keywordEditor.focus = true
+        }
+    }
+
+    SimpleButton {
+        id: btnCopy
+        anchors.top: keywordEditor.bottom
+        anchors.left: btnEdit.right
+        text: "Copy"
+        onClicked: {
+            keywordEditor.selectAll()
+            keywordEditor.copy()
+        }
+    }
+
+    SimpleButton {
+        anchors.top: keywordEditor.bottom
+        anchors.left: btnCopy.right
+        text: "Clear"
+
+        onClicked: {
+            keywordEditor.text = ""
+        }
     }
 
     ObjectNameLabel {
@@ -72,14 +102,14 @@ Rectangle {
             case 0:
 
             case 1:
-                member.model = propModel;
+                member.model = propModel
                 break
             case 2:
-                member.model = funcModel;
+                member.model = funcModel
                 break
             case 3:
-                member.model = "";
-                generateKeyword(currentIndex);
+                member.model = ""
+                generateKeyword(currentIndex)
             }
         }
     }
@@ -100,29 +130,29 @@ Rectangle {
     }
 
     function generateKeyword(action) {
+        var propName;
         switch (action) {
         case 0:
-            var propName = propModel.get(member.currentIndex).name
+            propName = propModel.get(member.currentIndex).name
             keywordEditor.append(
-                        "  ${res}  =  Get Property    " + base.labelName + "  " + propName)
-            break
+                        "  ${res}  =  Get Property    " + base.labelName + "  " + propName);
+            break;
         case 1:
-            var propName = propModel.get(member.currentIndex).name
+            propName = propModel.get(member.currentIndex).name
             keywordEditor.append("  Set Property    " + base.labelName + "  "
-                                 + propName + "    ${" + propName + "}")
-            break
+                                 + propName + "    ${" + propName + "}");
+            break;
         case 2:
-            var funcName = funcModel.get(member.currentIndex).name
+            funcName = funcModel.get(member.currentIndex).name
             keywordEditor.append(
-                        "  Invoke Method    " + base.labelName + "  " + funcName + "  []")
-            break
+                        "  Invoke Method    " + base.labelName + "  " + funcName + "  []");
+            break;
         case 3:
             keywordEditor.append(
-                        "  ${res} =  Click    " + base.labelName + "  vast2_mainwin")
-            break
+                        "  ${res} =  Click    " + base.labelName + "  vast2_mainwin");
+            break;
         }
     }
-
 
     Timer {
         id: timerHide
