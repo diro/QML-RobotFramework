@@ -13,7 +13,7 @@ ListView {
             name: " Invoke Method "
         }
         ListElement {
-            name: " Click it! "
+            name: " Click It "
         }
     }
     delegate: Text {
@@ -44,4 +44,3 @@ ListView {
         radius: 5
     }
 }
-

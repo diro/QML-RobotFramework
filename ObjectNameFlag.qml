@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import "ItemMemberBlackList.js" as BlackList
+
 Item {
     id: base
     property var item
@@ -45,7 +47,8 @@ Item {
                     displayBoard.delayHide()
                 }
                 onClicked: {
-                    adjustPanelPosition(displayBoard, base.flagSize, base.flagSize)
+                    adjustPanelPosition(displayBoard, base.flagSize,
+                                        base.flagSize)
                     generateItemMetadataModel()
                     displayBoard.labelName = base.labelName
                     displayBoard.labelPath = base.labelPath
@@ -57,6 +60,10 @@ Item {
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        BlackList.init()
     }
 
     function adjustPanelPosition(panel, blockWidth, blockHeight) {
@@ -77,18 +84,22 @@ Item {
         propList.clear()
 
         for (var i in base.item) {
-            if (typeof (base.item[i]) === "function") {
-                if (i.toString().indexOf("Changed") === -1) {
-                    var func = {
-                        name: i.toString()
-                    }
-                    funcList.append(func)
+            var name = i.toString()
+            var metadata = {
+                name: name
+            }
+
+            switch (typeof (base.item[i])) {
+            case "function":
+                if (BlackList.isValidFuncName(name)) {
+                    funcList.append(metadata)
                 }
-            } else {
-                var prop = {
-                    name: i.toString()
+                break
+            default:
+                if (BlackList.isValidPropName(name)) {
+                    propList.append(metadata)
                 }
-                propList.append(prop)
+                break
             }
         }
     }

@@ -8,5 +8,6 @@
         <file>ObjectNameLabel.qml</file>
         <file>ActionPicker.qml</file>
         <file>MemberPicker.qml</file>
+        <file>ItemMemberBlackList.js</file>
     </qresource>
 </RCC>
