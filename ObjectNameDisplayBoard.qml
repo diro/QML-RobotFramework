@@ -18,9 +18,11 @@ Rectangle {
     opacity: 0.9
     border.width: 1
     border.color: "#49491d"
+
     onLabelNameChanged: {
-        action.currentIndex = 0
-        member.model = funcModel
+        action.currentIndex = -1
+        member.currentIndex = -1
+        member.model = ""
     }
 
     TextArea {

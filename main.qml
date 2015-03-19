@@ -10,7 +10,7 @@ Window {
         anchors.fill: parent
         Component.onCompleted: {
             LabelQML.createDisplayBoard(this);
-            LabelQML.addObjectNameFlag(this);
+            //LabelQML.addObjectNameFlag(this);
         }
         mouseArea.onClicked: {
             if (!showName) {
