@@ -2,13 +2,14 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
-        <file>LabelQMLComponent.js</file>
         <file>ObjectNameFlag.qml</file>
         <file>ObjectNameDisplayBoard.qml</file>
         <file>ObjectNameLabel.qml</file>
         <file>ActionPicker.qml</file>
         <file>MemberPicker.qml</file>
-        <file>ItemMemberBlackList.js</file>
         <file>SimpleButton.qml</file>
+        <file>js/ItemMemberBlackList.js</file>
+        <file>js/LabelQMLComponent.js</file>
+        <file>main.cpp</file>
     </qresource>
 </RCC>

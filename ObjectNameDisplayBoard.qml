@@ -131,6 +131,7 @@ Rectangle {
 
     function generateKeyword(action) {
         var propName;
+        var funcName;
         switch (action) {
         case 0:
             propName = propModel.get(member.currentIndex).name

@@ -9,15 +9,24 @@ Rectangle {
 
 
     Rectangle {
-        x: 100
-        y: 100
+        anchors.centerIn: parent
+
         color: "pink"
         width: 100
         height: 100
         MouseArea {
             id: mouseArea
+            anchors.centerIn: parent
+
             objectName: "mos1"
             anchors.fill: parent
+
+            Text {
+                id: text1
+                anchors.centerIn: parent
+                text: qsTr("Switch RED DOT")
+                font.pixelSize: 12
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "ItemMemberBlackList.js" as BlackList
+import "js/ItemMemberBlackList.js" as BlackList
 
 Item {
     id: base
