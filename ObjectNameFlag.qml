@@ -9,7 +9,6 @@ Item {
     property int flagSize: 10
     property string labelName: ""
     property string labelPath: ""
-    anchors.fill: parent
 
     ListModel {
         id: propList

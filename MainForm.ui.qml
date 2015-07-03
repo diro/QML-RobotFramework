@@ -79,5 +79,9 @@ Rectangle {
             z: 10
         }
     }
+    ComboElement{
+        x:100
+        y:100
+    }
 
 }

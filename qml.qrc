@@ -11,5 +11,6 @@
         <file>js/ItemMemberBlackList.js</file>
         <file>js/LabelQMLComponent.js</file>
         <file>main.cpp</file>
+        <file>ComboElement.qml</file>
     </qresource>
 </RCC>
