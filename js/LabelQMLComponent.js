@@ -34,6 +34,11 @@ function addObjectNameFlag(item, prefix) {
             }
 
             if (item.children[i].objectName !== "") {
+                // Cannot specify left, right, horizontalCenter, fill or centerIn anchors for items inside Row. Row will not function.
+                //if (QmlHelperPlugin.doesQQuickItemInheritClassName(item.children[i], "QQuickRow") ||
+                //    QmlHelperPlugin.doesQQuickItemInheritClassName(item.children[i], "QQuickColumn"))
+                //    continue;
+
                 flagComp.createObject(item.children[i], {
                                           objectName: "DYN_NAME_FLAG",
                                           displayBoard: displayBoard,
